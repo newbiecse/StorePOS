@@ -41,9 +41,13 @@
             this.lblQuantity = new System.Windows.Forms.Label();
             this.cbxProductList = new System.Windows.Forms.ComboBox();
             this.lblProductName = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblOrderTotal = new System.Windows.Forms.Label();
+            this.lblOrderTotalValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.orderItemGridView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // orderItemGridView
@@ -174,11 +178,41 @@
             this.lblProductName.TabIndex = 0;
             this.lblProductName.Text = "Tên thuốc:";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblOrderTotalValue);
+            this.panel2.Controls.Add(this.lblOrderTotal);
+            this.panel2.Location = new System.Drawing.Point(605, 307);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(702, 137);
+            this.panel2.TabIndex = 2;
+            // 
+            // lblOrderTotal
+            // 
+            this.lblOrderTotal.AutoSize = true;
+            this.lblOrderTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderTotal.Location = new System.Drawing.Point(397, 26);
+            this.lblOrderTotal.Name = "lblOrderTotal";
+            this.lblOrderTotal.Size = new System.Drawing.Size(133, 29);
+            this.lblOrderTotal.TabIndex = 0;
+            this.lblOrderTotal.Text = "Tổng Tiền:";
+            // 
+            // lblOrderTotalValue
+            // 
+            this.lblOrderTotalValue.AutoSize = true;
+            this.lblOrderTotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderTotalValue.Location = new System.Drawing.Point(547, 26);
+            this.lblOrderTotalValue.Name = "lblOrderTotalValue";
+            this.lblOrderTotalValue.Size = new System.Drawing.Size(27, 29);
+            this.lblOrderTotalValue.TabIndex = 2;
+            this.lblOrderTotalValue.Text = "0";
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1432, 781);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.orderItemGridView);
             this.Name = "SaleForm";
@@ -188,6 +222,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -207,6 +243,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Unit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewButtonColumn Action;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblOrderTotalValue;
+        private System.Windows.Forms.Label lblOrderTotal;
     }
 }
 

@@ -94,6 +94,8 @@ namespace StorePOS
                 UpdateRowGridView(orderItem);
             }
 
+            UpdateOrderTotalAmount();
+
             ClearForm();
         }
 
@@ -149,6 +151,8 @@ namespace StorePOS
                 orderItem.Quantity = Int32.Parse(sQuantity);
                 row.Cells[4].Value = orderItem.GetAmount();
                 _order.CaculateTotalAmount();
+
+                UpdateOrderTotalAmount();
             }
         }
 
@@ -161,9 +165,15 @@ namespace StorePOS
                 {
                     var product = GetProduct();
                     _order.RemoveItem(product.Id);
+                    UpdateOrderTotalAmount();
                     orderItemGridView.Rows.RemoveAt(orderItemGridView.CurrentCell.RowIndex);
                 }
             }
+        }
+
+        private void UpdateOrderTotalAmount()
+        {
+            lblOrderTotalValue.Text = string.Format("{0:n0}", _order.TotalAmount);
         }
 
         private Product GetProduct()
