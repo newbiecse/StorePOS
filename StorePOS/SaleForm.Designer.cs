@@ -29,17 +29,18 @@
         private void InitializeComponent()
         {
             this.orderItemGridView = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblProductName = new System.Windows.Forms.Label();
-            this.cbxProductList = new System.Windows.Forms.ComboBox();
-            this.lblQuantity = new System.Windows.Forms.Label();
-            this.txtQuantity = new System.Windows.Forms.NumericUpDown();
-            this.btnAddItem = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAddItem = new System.Windows.Forms.Button();
+            this.txtQuantity = new System.Windows.Forms.NumericUpDown();
+            this.lblQuantity = new System.Windows.Forms.Label();
+            this.cbxProductList = new System.Windows.Forms.ComboBox();
+            this.lblProductName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.orderItemGridView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity)).BeginInit();
@@ -58,72 +59,16 @@
             this.ProductName,
             this.Quantity,
             this.Unit,
-            this.Amount});
+            this.Amount,
+            this.Action});
             this.orderItemGridView.Location = new System.Drawing.Point(605, 56);
             this.orderItemGridView.MultiSelect = false;
             this.orderItemGridView.Name = "orderItemGridView";
             this.orderItemGridView.RowTemplate.Height = 24;
             this.orderItemGridView.Size = new System.Drawing.Size(803, 245);
             this.orderItemGridView.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnAddItem);
-            this.panel1.Controls.Add(this.txtQuantity);
-            this.panel1.Controls.Add(this.lblQuantity);
-            this.panel1.Controls.Add(this.cbxProductList);
-            this.panel1.Controls.Add(this.lblProductName);
-            this.panel1.Location = new System.Drawing.Point(12, 56);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(533, 229);
-            this.panel1.TabIndex = 1;
-            // 
-            // lblProductName
-            // 
-            this.lblProductName.AutoSize = true;
-            this.lblProductName.Location = new System.Drawing.Point(29, 16);
-            this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(76, 17);
-            this.lblProductName.TabIndex = 0;
-            this.lblProductName.Text = "Tên thuốc:";
-            // 
-            // cbxProductList
-            // 
-            this.cbxProductList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbxProductList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbxProductList.FormattingEnabled = true;
-            this.cbxProductList.Location = new System.Drawing.Point(198, 13);
-            this.cbxProductList.Name = "cbxProductList";
-            this.cbxProductList.Size = new System.Drawing.Size(310, 24);
-            this.cbxProductList.TabIndex = 1;
-            this.cbxProductList.SelectedIndexChanged += new System.EventHandler(this.cbxProductList_SelectedIndexChanged);
-            // 
-            // lblQuantity
-            // 
-            this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(29, 59);
-            this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(68, 17);
-            this.lblQuantity.TabIndex = 2;
-            this.lblQuantity.Text = "Số lượng:";
-            // 
-            // txtQuantity
-            // 
-            this.txtQuantity.Location = new System.Drawing.Point(198, 59);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(120, 22);
-            this.txtQuantity.TabIndex = 3;
-            this.txtQuantity.ValueChanged += new System.EventHandler(this.txtQuantity_ValueChanged);
-            // 
-            // btnAddItem
-            // 
-            this.btnAddItem.Location = new System.Drawing.Point(198, 114);
-            this.btnAddItem.Name = "btnAddItem";
-            this.btnAddItem.Size = new System.Drawing.Size(75, 48);
-            this.btnAddItem.TabIndex = 4;
-            this.btnAddItem.Text = "Lưu";
-            this.btnAddItem.UseVisualStyleBackColor = true;
-            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
+            this.orderItemGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.orderItemGridView_CellValueChanged);
+            this.orderItemGridView.Click += new System.EventHandler(this.orderItemGridView_Click);
             // 
             // Id
             // 
@@ -153,6 +98,81 @@
             this.Amount.HeaderText = "Thành tiền";
             this.Amount.Name = "Amount";
             this.Amount.ReadOnly = true;
+            // 
+            // Action
+            // 
+            this.Action.HeaderText = "Thao tác";
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            this.Action.Text = "Xóa";
+            this.Action.UseColumnTextForButtonValue = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnAddItem);
+            this.panel1.Controls.Add(this.txtQuantity);
+            this.panel1.Controls.Add(this.lblQuantity);
+            this.panel1.Controls.Add(this.cbxProductList);
+            this.panel1.Controls.Add(this.lblProductName);
+            this.panel1.Location = new System.Drawing.Point(12, 56);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(533, 229);
+            this.panel1.TabIndex = 1;
+            // 
+            // btnAddItem
+            // 
+            this.btnAddItem.Location = new System.Drawing.Point(198, 155);
+            this.btnAddItem.Name = "btnAddItem";
+            this.btnAddItem.Size = new System.Drawing.Size(161, 48);
+            this.btnAddItem.TabIndex = 4;
+            this.btnAddItem.Text = "THÊM";
+            this.btnAddItem.UseVisualStyleBackColor = true;
+            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuantity.Location = new System.Drawing.Point(198, 88);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(310, 26);
+            this.txtQuantity.TabIndex = 3;
+            this.txtQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtQuantity.ValueChanged += new System.EventHandler(this.txtQuantity_ValueChanged);
+            // 
+            // lblQuantity
+            // 
+            this.lblQuantity.AutoSize = true;
+            this.lblQuantity.Location = new System.Drawing.Point(29, 93);
+            this.lblQuantity.Name = "lblQuantity";
+            this.lblQuantity.Size = new System.Drawing.Size(68, 17);
+            this.lblQuantity.TabIndex = 2;
+            this.lblQuantity.Text = "Số lượng:";
+            // 
+            // cbxProductList
+            // 
+            this.cbxProductList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbxProductList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxProductList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxProductList.FormattingEnabled = true;
+            this.cbxProductList.ItemHeight = 20;
+            this.cbxProductList.Location = new System.Drawing.Point(198, 13);
+            this.cbxProductList.Name = "cbxProductList";
+            this.cbxProductList.Size = new System.Drawing.Size(310, 28);
+            this.cbxProductList.TabIndex = 1;
+            this.cbxProductList.SelectedIndexChanged += new System.EventHandler(this.cbxProductList_SelectedIndexChanged);
+            // 
+            // lblProductName
+            // 
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Location = new System.Drawing.Point(29, 16);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(76, 17);
+            this.lblProductName.TabIndex = 0;
+            this.lblProductName.Text = "Tên thuốc:";
             // 
             // SaleForm
             // 
@@ -186,6 +206,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Unit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
+        private System.Windows.Forms.DataGridViewButtonColumn Action;
     }
 }
 

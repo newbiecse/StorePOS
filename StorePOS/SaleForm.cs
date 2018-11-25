@@ -71,7 +71,7 @@ namespace StorePOS
         private void ClearForm()
         {
             _currentProductId = 0;
-            txtQuantity.Value = 0;
+            txtQuantity.Value = 1;
             cbxProductList.SelectedItem = null;
 
             ValidateForm();
@@ -129,6 +129,67 @@ namespace StorePOS
         private void txtQuantity_ValueChanged(object sender, EventArgs e)
         {
             ValidateForm();
+        }
+
+        private void orderItemGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (orderItemGridView.CurrentCell != null && orderItemGridView.CurrentCell.ColumnIndex == 2)
+            {
+                var sQuantity = (string)orderItemGridView.CurrentCell.Value;
+                if (!IsValidNumber(sQuantity))
+                {
+                    MessageBox.Show("Số lượng phải là một số lớn hơn 0.");
+                    return;
+                }
+
+                var row = orderItemGridView.Rows[orderItemGridView.CurrentCell.RowIndex];
+                var product = GetProduct();
+
+                var orderItem = _order.Items.First(i => i.Product.Id == product.Id);
+                orderItem.Quantity = Int32.Parse(sQuantity);
+                row.Cells[4].Value = orderItem.GetAmount();
+                _order.CaculateTotalAmount();
+            }
+        }
+
+        private void orderItemGridView_Click(object sender, EventArgs e)
+        {
+            if (orderItemGridView.CurrentCell.ColumnIndex == orderItemGridView.Columns["Action"].Index)
+            {
+                var confirm = MessageBox.Show("Bạn có thực sự muốn xóa?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    var product = GetProduct();
+                    _order.RemoveItem(product.Id);
+                    orderItemGridView.Rows.RemoveAt(orderItemGridView.CurrentCell.RowIndex);
+                }
+            }
+        }
+
+        private Product GetProduct()
+        {
+            var row = orderItemGridView.Rows[orderItemGridView.CurrentCell.RowIndex];
+            var productName = (string)row.Cells[1].Value;
+            var product = _products.First(p => p.Name == productName);
+
+            return product;
+        }
+
+        private bool IsValidNumber(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return false;
+            }
+
+            int num;
+
+            if (int.TryParse(value, out num) && num > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
