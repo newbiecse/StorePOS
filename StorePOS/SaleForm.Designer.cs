@@ -42,8 +42,9 @@
             this.cbxProductList = new System.Windows.Forms.ComboBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblOrderTotal = new System.Windows.Forms.Label();
             this.lblOrderTotalValue = new System.Windows.Forms.Label();
+            this.lblOrderTotal = new System.Windows.Forms.Label();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.orderItemGridView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity)).BeginInit();
@@ -180,12 +181,23 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnPrint);
             this.panel2.Controls.Add(this.lblOrderTotalValue);
             this.panel2.Controls.Add(this.lblOrderTotal);
             this.panel2.Location = new System.Drawing.Point(605, 307);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(702, 137);
             this.panel2.TabIndex = 2;
+            // 
+            // lblOrderTotalValue
+            // 
+            this.lblOrderTotalValue.AutoSize = true;
+            this.lblOrderTotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderTotalValue.Location = new System.Drawing.Point(547, 26);
+            this.lblOrderTotalValue.Name = "lblOrderTotalValue";
+            this.lblOrderTotalValue.Size = new System.Drawing.Size(27, 29);
+            this.lblOrderTotalValue.TabIndex = 2;
+            this.lblOrderTotalValue.Text = "0";
             // 
             // lblOrderTotal
             // 
@@ -197,15 +209,15 @@
             this.lblOrderTotal.TabIndex = 0;
             this.lblOrderTotal.Text = "Tổng Tiền:";
             // 
-            // lblOrderTotalValue
+            // btnPrint
             // 
-            this.lblOrderTotalValue.AutoSize = true;
-            this.lblOrderTotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrderTotalValue.Location = new System.Drawing.Point(547, 26);
-            this.lblOrderTotalValue.Name = "lblOrderTotalValue";
-            this.lblOrderTotalValue.Size = new System.Drawing.Size(27, 29);
-            this.lblOrderTotalValue.TabIndex = 2;
-            this.lblOrderTotalValue.Text = "0";
+            this.btnPrint.Location = new System.Drawing.Point(402, 70);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(128, 43);
+            this.btnPrint.TabIndex = 3;
+            this.btnPrint.Text = "IN";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // SaleForm
             // 
@@ -246,6 +258,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblOrderTotalValue;
         private System.Windows.Forms.Label lblOrderTotal;
+        private System.Windows.Forms.Button btnPrint;
     }
 }
 

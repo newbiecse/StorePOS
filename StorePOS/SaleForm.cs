@@ -201,5 +201,14 @@ namespace StorePOS
 
             return false;
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (_order.Items.Any())
+            {
+                ReportForm reportForm = new ReportForm(_order);
+                reportForm.ShowDialog();
+            }
+        }
     }
 }
